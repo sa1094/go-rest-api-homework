@@ -7,7 +7,6 @@ import (
 
 	"github.com/go-chi/chi/v5"
 	"github.com/sa1094/go-rest-api-homework/internal/models"
-	"gopkg.in/yaml.v3"
 )
 
 func CreateTask(res http.ResponseWriter, req *http.Request) {
@@ -42,8 +41,7 @@ func DeleteTask(res http.ResponseWriter, req *http.Request) {
 
 func ListTasks(res http.ResponseWriter, _ *http.Request) {
 	r := models.List()
-	s, err := yaml.Marshal(r)
-	res.Header().Set("Content-Type", "application/json")
+	s, err := json.Marshal(r)
 	if err != nil {
 		http.Error(res, err.Error(), http.StatusInternalServerError)
 	}
@@ -63,7 +61,7 @@ func GetTaskByID(res http.ResponseWriter, req *http.Request) {
 		http.Error(res, err.Error(), http.StatusBadRequest)
 		return
 	}
-	s, err := yaml.Marshal(task)
+	s, err := json.Marshal(task)
 	if err != nil {
 		http.Error(res, err.Error(), http.StatusInternalServerError)
 		return
