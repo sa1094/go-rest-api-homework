@@ -12,7 +12,6 @@ import (
 func CreateTask(res http.ResponseWriter, req *http.Request) {
 	task := &models.Task{}
 	body, err := io.ReadAll(req.Body)
-	req.Body.Close()
 	if err != nil {
 		http.Error(res, err.Error(), http.StatusBadRequest)
 		return
