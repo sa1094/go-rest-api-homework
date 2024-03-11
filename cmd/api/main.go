@@ -54,7 +54,7 @@ func main() {
 	r.Get("/tasks/{id}", controllers.GetTaskByID)
 	r.Delete("/tasks/{id}", controllers.DeleteTask)
 
-	if err := http.ListenAndServe(":8080", r); err != nil {
+	if err := http.ListenAndServe(":8080", r); err != nil { //nolint:gosec // we should use this server
 		fmt.Printf("Ошибка при запуске сервера: %s", err.Error())
 		return
 	}

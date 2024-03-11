@@ -47,10 +47,10 @@ func ByID(id string) (Task, error) {
 	if _, ok := db[id]; !ok {
 		return Task{}, fmt.Errorf("item doesn't exist")
 	}
-	if t, ok := db[id].(Task); !ok {
+	t, ok := db[id].(Task)
+	if !ok {
 		return Task{}, fmt.Errorf("item doesn't exist")
-	} else {
-		return t, nil
 	}
+	return t, nil
 
 }

@@ -2,8 +2,11 @@ package database
 
 import "sync"
 
-var instance map[string]interface{}
-var once sync.Once
+//nolint:gochecknoglobals  // because this should be singletone
+var (
+	instance map[string]interface{}
+	once     sync.Once
+)
 
 func GetInstance() map[string]interface{} {
 	once.Do(func() {
