@@ -27,7 +27,7 @@ func CreateTask(res http.ResponseWriter, req *http.Request) {
 		http.Error(res, err.Error(), http.StatusConflict)
 		return
 	}
-
+	res.WriteHeader(http.StatusCreated)
 }
 
 func DeleteTask(res http.ResponseWriter, req *http.Request) {
